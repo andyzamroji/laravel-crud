@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form action="/siswa/{{$siswa->id}}/update" method="POST">
+          <form action="/siswa/{{$siswa->id}}/update" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group">
               <label for="exampleInputEmail1">Nama Depan</label>
@@ -37,6 +37,11 @@
               <label for="exampleFormControlTextarea1">Alamat</label>
               <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1"
                 rows="3">{{$siswa->alamat}}</textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Avatar</label>
+              <input name="avatar" type="file" class="form-control">
             </div>
 
             <button type="submit" class="btn btn-warning">Update</button>
