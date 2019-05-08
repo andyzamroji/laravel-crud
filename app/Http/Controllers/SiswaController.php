@@ -18,6 +18,18 @@ class SiswaController extends Controller
 
   public function create(Request $request)
   {
+    $this->validate($request,[
+      'nama_depan'    => 'required|min:5',
+      'nama_belakang' => 'required',
+      'email'         => 'required|email|unique:users',
+      'jenis_kelamin' => 'required',
+      'agama'        => 'required',
+      'alamat'        => 'required',
+      'avatar'        => 'mimes:jpg,png',
+    ]);
+    
+    
+    
     //insert table user
     $user = new \App\User;
     $user->role = 'siswa';
@@ -30,7 +42,11 @@ class SiswaController extends Controller
     //insert table siswa
     $request->request->add(['user_id' => $user->id ]);
     $siswa = \App\Siswa::create($request->all());
-
+    if ($request->hasFile('avatar')) {
+      $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
+      $siswa->avatar = $request->file('avatar')->getClientOriginalName();
+      $siswa->save();
+    } 
     
     return redirect('/siswa')->with('sukses','Data Berhasil Di Input');
   }
@@ -63,6 +79,15 @@ class SiswaController extends Controller
   public function profile($id)
   {
     $siswa = \App\Siswa::find($id);
-    return view('siswa.profile',['siswa' => $siswa]);
+    $matapelajaran = \App\Mapel::all();
+    // dd($mapel);
+    return view('siswa.profile',['siswa' => $siswa, 'matapelajaran' => $matapelajaran]);
+  }
+
+  public function addnilai(Request $request,$idsiswa)
+  {
+    $siswa = \App\Siswa::find($idsiswa);
+    $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
+    return redirect('siswa/.$idsiswa./profile')->with('sukses','Data nilai berhasil di input!');
   }
 }

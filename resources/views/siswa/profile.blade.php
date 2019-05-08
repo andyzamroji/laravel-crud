@@ -20,7 +20,7 @@
 									<div class="profile-stat">
 										<div class="row">
 											<div class="col-md-4 stat-item">
-												45 <span>Projects</span>
+												{{$siswa->mapel->count()}} <span>Mata Pelajaran</span>
 											</div>
 											<div class="col-md-4 stat-item">
 												15 <span>Awards</span>
@@ -49,35 +49,38 @@
 							<!-- END LEFT COLUMN -->
 							<!-- RIGHT COLUMN -->
 							<div class="profile-right">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+							Tambah Nilai
+							</button>
 								
 								<!-- TABBED CONTENT -->
-								<div class="custom-tabs-line tabs-line-bottom left-aligned">
-									<ul class="nav" role="tablist">
-										<li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Aktifitas terakhir</a></li>
-									</ul>
+								<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Mata Pelajaran</h3>
 								</div>
-								<div class="tab-content">
-									<div class="tab-pane fade in active" id="tab-bottom-left1">
-										<ul class="list-unstyled activity-timeline">
-											<li>
-												<i class="fa fa-comment activity-icon"></i>
-												<p>Commented on post <a href="#">Prototyping</a> <span class="timestamp">2 minutes ago</span></p>
-											</li>
-											<li>
-												<i class="fa fa-cloud-upload activity-icon"></i>
-												<p>Uploaded new file <a href="#">Proposal.docx</a> to project <a href="#">New Year Campaign</a> <span class="timestamp">7 hours ago</span></p>
-											</li>
-											<li>
-												<i class="fa fa-plus activity-icon"></i>
-												<p>Added <a href="#">Martin</a> and <a href="#">3 others colleagues</a> to project repository <span class="timestamp">Yesterday</span></p>
-											</li>
-											<li>
-												<i class="fa fa-check activity-icon"></i>
-												<p>Finished 80% of all <a href="#">assigned tasks</a> <span class="timestamp">1 day ago</span></p>
-											</li>
-										</ul>
-										<div class="margin-top-30 text-center"><a href="#" class="btn btn-default">See all activity</a></div>
-									</div>
+								<div class="panel-body">
+									<table class="table table-striped table-hover">
+										<thead>
+											<tr>
+												<th>KODE</th>
+												<th>NAMA</th>
+												<th>SEMESTER</th>
+												<th>NILAI</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach($siswa->mapel as $mapel)
+											<tr>
+												<td>{{$mapel->kode}}</td>
+												<td>{{$mapel->nama}}</td>
+												<td>{{$mapel->semester}}</td>
+												<td>{{$mapel->pivot->nilai}}</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+								</div>
+							</div>
 									
 								<!-- END TABBED CONTENT -->
 							</div>
@@ -89,4 +92,46 @@
 			<!-- END MAIN CONTENT -->
 		</div>
 		<!-- END MAIN -->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  	<form action="/siswa/{{$siswa->id}}/addnilai" method="POST" enctype="multipart/form-data">
+          {{csrf_field()}}
+
+		  <div class="form-group">
+			<label for="mapel">Mata Pelajaran</label>
+			<select class="form-control" id="mapel" name="mapel">
+			@foreach($matapelajaran as $mp)
+				<option value="{{$mp->id}}">{{$mp->nama}}</option>
+			@endforeach
+			
+			</select>
+		</div>
+
+          <div class="form-group{{$errors->has('nama_depan') ? ' has-error' : ''}}">
+            <label for="exampleInputEmail1">Nilai</label>
+            <input name="nilai" type="text" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Nilai" value="{{old('nilai')}}">
+              @if($errors->has('nilai'))
+                <span class="help-block">{{$errors->first('nilai')}}</span>
+              @endif
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
 @stop

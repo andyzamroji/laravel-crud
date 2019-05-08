@@ -9,7 +9,8 @@ class Siswa extends Model
   protected $table = 'siswa';
   protected $fillable = ['nama_depan','nama_belakang','jenis_kelamin','agama','alamat','avatar','user_id'];
 
-  public function getAvatar(){
+  public function getAvatar()
+  {
     if(!$this->avatar){
       return asset('images/default.png');
     }
@@ -17,7 +18,8 @@ class Siswa extends Model
     return asset('images/'.$this->avatar);
   }
 
-  public function mapel(){
-    return $this->nelongsToMany(Mapel::class);
+  public function mapel()
+  {
+    return $this->belongsToMany(Mapel::class)->withPivot(['nilai'])->withTimeStamps();
   }
 }
