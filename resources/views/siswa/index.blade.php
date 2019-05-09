@@ -9,6 +9,9 @@
             <div class="panel-heading">
               <h3 class="panel-title">Data Siswa</h3>
               <div class="right">
+              <a href="/siswa/exportexcel" class="btn btn-sm btn-primary">Export Excel</a>
+              <a href="/siswa/exportpdf" class="btn btn-sm btn-primary">Export PDF</a>
+              
                 <!-- Button trigger modal -->
                 <!-- <button type="button" class="btn btn-sm btn-primary float-right" data-toggle="modal"
                   data-target="#exampleModal">
