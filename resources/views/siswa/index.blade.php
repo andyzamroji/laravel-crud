@@ -45,8 +45,7 @@
                     <td>{{$siswa->rataratanilai()}}</td>
                     <td>
                       <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
-                      <a href="/siswa/{{$siswa->id}}/delete" class="btn btn-danger btn-sm"
-                        onclick="return confirm('Apakah Anda Yakin akan menghapus?')">Delete</a>
+                      <a href="#" class="btn btn-danger btn-sm delete" siswa-id="{{$siswa->id}}">Delete</a>
                     </td>
                   </tr>
                   @endforeach
@@ -147,3 +146,28 @@
     {{session('sukses')}}
   </div>
   @endif
+
+  @section('footer')
+    <script>
+      $('.delete').click(function(){
+        var siswa_id = $(this).attr('siswa-id');
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this imaginary file!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location = "/siswa/"+siswa_id+"/delete";
+            swal("Poof! Your imaginary file has been deleted!", {
+              icon: "success",
+            });
+          } else {
+            swal("Your imaginary file is safe!");
+          }
+        });
+      })
+    </script>  
+  @stop
