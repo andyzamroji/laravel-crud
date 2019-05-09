@@ -14,7 +14,8 @@
 // Route::get('/', function () {
 //     return view('/login','AuthController@login')->name('login');
 // });
-Route::get('/','AuthController@login')->name('login');
+Route::get('/','SideController@home');
+
 Route::get('/login','AuthController@login')->name('login');
 Route::post('/postlogin','AuthController@postlogin');
 
