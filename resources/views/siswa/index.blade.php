@@ -27,6 +27,7 @@
                     <th>Jenis Kelamin</th>
                     <th>Agama</th>
                     <th>Alamat</th>
+                    <th>Rata-rata Nilai</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -38,6 +39,7 @@
                     <td>{{$siswa->jenis_kelamin}}</td>
                     <td>{{$siswa->agama}}</td>
                     <td>{{$siswa->alamat}}</td>
+                    <td>{{$siswa->rataratanilai()}}</td>
                     <td>
                       <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
                       <a href="/siswa/{{$siswa->id}}/delete" class="btn btn-danger btn-sm"
