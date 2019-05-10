@@ -13,4 +13,8 @@ class SiteController extends Controller
     public function about(){
         return view('sites.about');
     }
+
+    public function register(){
+        return view('sites.register');
+    }
 }
