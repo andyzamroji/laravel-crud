@@ -57,31 +57,8 @@
               </div>
               <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="about.html">About</a></li>
-                  <li><a href="courses.html">Courses</a></li>
-                  <li><a href="events.html">Events</a></li>
-                  <li><a href="gallery.html">Gallery</a></li>
-                  <li class="menu-has-children"><a href="">Blog</a>
-                    <ul>
-                      <li><a href="blog-home.html">Blog Home</a></li>
-                      <li><a href="blog-single.html">Blog Single</a></li>
-                    </ul>
-                  </li>	
-                  <li class="menu-has-children"><a href="">Pages</a>
-                    <ul>
-                          <li><a href="course-details.html">Course Details</a></li>		
-                          <li><a href="event-details.html">Event Details</a></li>		
-                        <li><a href="elements.html">Elements</a></li>
-                          <li class="menu-has-children"><a href="">Level 2 </a>
-                            <ul>
-                              <li><a href="#">Item One</a></li>
-                              <li><a href="#">Item Two</a></li>
-                            </ul>
-                          </li>					                		
-                    </ul>
-                  </li>					          					          		          
-                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="/">Home</a></li>		          					          		          
+                  <li><a href="/register">Daftar</a></li>
                 </ul>
               </nav><!-- #nav-menu-container -->		    		
             </div>
@@ -177,7 +154,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="{{asset('/frontend')}}/js/vendor/bootstrap.min.js"></script>			
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="{{asset('/frontend')}}/js/easing.min.js"></script>			
+        <script src="{{asset('/frontend')}}/js/easing.min.js"></script>			
         <script src="{{asset('/frontend')}}/js/hoverIntent.js"></script>
         <script src="{{asset('/frontend')}}/js/superfish.min.js"></script>	
         <script src="{{asset('/frontend')}}/js/jquery.ajaxchimp.min.js"></script>
